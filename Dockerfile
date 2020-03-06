@@ -7,4 +7,4 @@ WORKDIR /app
 
 COPY sidekiq-monitoring.rb .
 
-CMD ruby sidekiq-monitoring.rb
+CMD REDIS_PROVIDER=SIDEKIQ_REDIS_URL ruby sidekiq-monitoring.rb
