@@ -46,13 +46,14 @@ def print_monitoring_data
     logger.info "sdmon_q_size_#{name}: #{size}"
   end
 
-  logger.info "sdmon_q_all_combined: #{Sidekiq::Stats.new.enqueued}"
+  logger.info "sdmon_q_size_all: #{Sidekiq::Stats.new.enqueued}"
 
   busy_count = Sidekiq::ProcessSet.new.map { |x| x["busy"] }.reduce(&:+)
-  logger.info "sdmon_proc_busy_count: #{busy_count}"
+  logger.info "sdmon_proc_busy: #{busy_count}"
 
-  logger.info "sdmon_proc_count: #{Sidekiq::ProcessSet.new.size}"
-  logger.info "sdmon_worker_count: #{Sidekiq::Workers.new.size}"
+  logger.info "sdmon_proc_all: #{Sidekiq::ProcessSet.new.size}"
+  logger.info "sdmon_proc_workers: #{Sidekiq::Workers.new.size}"
+  $stdout.flush
 end
 
 def monitoring_loop
