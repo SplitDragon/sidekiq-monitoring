@@ -112,13 +112,13 @@ class SidekiqMonitoring
 
     # Log additional Sidekiq Processes and Workers data
     sdmon_proc_all = Sidekiq::ProcessSet.new.size
-    logger.info "sdmon_proc_all: #{sdmon_proc_all}"
-    logger.info "sdmon_proc_workers: #{Sidekiq::Workers.new.size}"
+    @logger.info "sdmon_proc_all: #{sdmon_proc_all}"
+    @logger.info "sdmon_proc_workers: #{Sidekiq::Workers.new.size}"
 
     @monitoring.write_value Sidekiq::Stats.new.enqueued
 
     busy_avg   = (busy_count || 0).to_f / sdmon_proc_all.to_f
-    logger.info "sdmon_proc_busy_avg: #{busy_avg}"
+    @logger.info "sdmon_proc_busy_avg: #{busy_avg}"
 
     $stdout.flush
   end

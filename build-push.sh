@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=3.2
+VERSION=3.3
 
 docker build . -t asia.gcr.io/sd-cicd/sidekiq-mon:${VERSION}
 # docker build . -t asia.gcr.io/sd-cicd/sidekiq-mon:latest
