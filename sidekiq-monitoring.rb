@@ -3,6 +3,20 @@ require "google/cloud/monitoring"
 
 include Sidekiq
 
+Sidekiq.configure_server do |config|
+  config.redis = {
+    url: ENV['REDIS_SIDEKIQ_URL'],
+    sentinels: [{ host: ENV['REDIS_SIDEKIQ_SENTINEL_HOST'], port: ENV['REDIS_SENTINEL_PORT'] }],
+  }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = {
+    url: ENV['REDIS_SIDEKIQ_URL'],
+    sentinels: [{ host: ENV['REDIS_SIDEKIQ_SENTINEL_HOST'], port: ENV['REDIS_SENTINEL_PORT'] }],
+  }
+end
+
 class MyLogger
   def initialize
   end
