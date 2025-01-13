@@ -1,4 +1,4 @@
-FROM ruby:2.6.5-slim-buster
+FROM ruby:3.0.7-slim-buster
 
 # RUN apt update && apt install -y build-essential
 RUN gem install sidekiq google-cloud-monitoring
